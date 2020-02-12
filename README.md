@@ -1,6 +1,6 @@
 # Vue Component - C Share buttons
 
-![npm version](https://img.shields.io/npm/v/vue-c-share?style=flat-square)
+[![npm version](https://img.shields.io/npm/v/vue-c-share?style=flat-square)](https://www.npmjs.com/package/vue-c-share)
 
 The share to community buttons Component for Vue.
 
