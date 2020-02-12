@@ -1,6 +1,7 @@
 {
   "name": "vue-c-share",
   "version": "0.1.0",
+  "description": "The share to community buttons Component for Vue.",
   "author": "Lucas Yang <yangchenshin77@gmail.com>",
   "license": "MIT",
   "main": "dist/vue-c-share.js",
