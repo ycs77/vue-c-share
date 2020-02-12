@@ -1,0 +1,40 @@
+{
+  "name": "vue-c-share",
+  "version": "0.1.0",
+  "author": "Lucas Yang <yangchenshin77@gmail.com>",
+  "license": "MIT",
+  "main": "dist/vue-c-share.js",
+  "module": "dist/vue-c-share.esm.js",
+  "unpkg": "dist/vue-c-share.min.js",
+  "browser": {
+    "./sfc": "src/CShare.vue"
+  },
+  "homepage": "https://github.com/ycs77/vue-c-share",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ycs77/vue-c-share.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ycs77/vue-c-share/issues"
+  },
+  "scripts": {
+    "build": "rollup -c build/rollup.config.js"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
+    "@fortawesome/free-solid-svg-icons": "^5.12.1",
+    "@fortawesome/vue-fontawesome": "^0.1.9"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "lodash": "^4.17.15",
+    "rollup": "^1.31.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-vue": "^5.1.6",
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
