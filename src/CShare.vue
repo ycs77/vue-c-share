@@ -66,20 +66,9 @@ export default {
     description: String,
     showButtons: {
       type: Array,
-      // default: () => [
-      //   'fb',
-      //   'gPlus'
-      // ]
       default: () => [
         'fb',
-        'gPlus',
-        'line',
-        'plurk',
-        'weibo',
-        'twitter',
-        'tumblr',
-        'pinterest',
-        'email'
+        'gPlus'
       ]
     },
     buttons: {
