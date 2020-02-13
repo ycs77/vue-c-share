@@ -1,3 +1,13 @@
+/*!
+ * vue-c-share.js v0.1.0
+ * https://github.com/ycs77/vue-c-share
+ *
+ * Copyright 2020 Lucas Yang
+ * Released under the MIT license
+ *
+ * Date: 2020-02-13T13:47:07.204Z
+ */
+
 import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons';
