@@ -89,7 +89,7 @@ export default {
         line: {
           fa: ['fab', 'line'],
           name: 'Line',
-          href: url => `https://lineit.line.me/share/ui?url=${url}`,
+          href: url => `https://social-plugins.line.me/lineit/share?url=${url}`,
           transform: '',
           hideWrapper: true
         },
