@@ -5,14 +5,19 @@
  * Copyright 2020 Lucas Yang
  * Released under the MIT license
  *
- * Date: 2020-07-19T09:56:22.501Z
+ * Date: 2020-10-19T07:45:54.631Z
  */
 
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = global || self, factory(global.vueCShare = {}));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vueCShare = {}));
 }(this, (function (exports) { 'use strict';
+
+  /*!
+   * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+   * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+   */
 
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -570,9 +575,12 @@
         width = _ref.width,
         height = _ref.height;
 
-    var widthClass = "fa-w-".concat(Math.ceil(width / height * 16));
+    var isUploadedIcon = prefix === 'fak';
+    var widthClass = isUploadedIcon ? '' : "fa-w-".concat(Math.ceil(width / height * 16));
     var attrClass = [config.replacementClass, iconName ? "".concat(config.familyPrefix, "-").concat(iconName) : '', widthClass].filter(function (c) {
       return extra.classes.indexOf(c) === -1;
+    }).filter(function (c) {
+      return c !== '' || !!c;
     }).concat(extra.classes).join(' ');
     var content = {
       children: [],
@@ -585,6 +593,9 @@
         'viewBox': "0 0 ".concat(width, " ").concat(height)
       })
     };
+    var uploadedIconWidthStyle = isUploadedIcon && !~extra.classes.indexOf('fa-fw') ? {
+      width: "".concat(width / height * 16 * 0.0625, "em")
+    } : {};
 
     if (watchable) {
       content.attributes[DATA_FA_I2SVG] = '';
@@ -606,7 +617,7 @@
       maskId: maskId,
       transform: transform,
       symbol: symbol,
-      styles: extra.styles
+      styles: _objectSpread({}, uploadedIconWidthStyle, extra.styles)
     });
 
     var _ref2 = mask.found && main.found ? makeIconMasking(args) : makeIconStandard(args),
@@ -1791,6 +1802,10 @@
     }
   };
 
+  /*!
+   * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+   * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+   */
   var faCircle = {
     prefix: 'fas',
     iconName: 'circle',
@@ -1802,15 +1817,14 @@
     icon: [512, 512, [], "f0e0", "M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"]
   };
 
+  /*!
+   * Font Awesome Free 5.15.1 by @fontawesome - https://fontawesome.com
+   * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+   */
   var faFacebookF = {
     prefix: 'fab',
     iconName: 'facebook-f',
     icon: [320, 512, [], "f39e", "M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"]
-  };
-  var faGooglePlusG = {
-    prefix: 'fab',
-    iconName: 'google-plus-g',
-    icon: [640, 512, [], "f0d5", "M386.061 228.496c1.834 9.692 3.143 19.384 3.143 31.956C389.204 370.205 315.599 448 204.8 448c-106.084 0-192-85.915-192-192s85.916-192 192-192c51.864 0 95.083 18.859 128.611 50.292l-52.126 50.03c-14.145-13.621-39.028-29.599-76.485-29.599-65.484 0-118.92 54.221-118.92 121.277 0 67.056 53.436 121.277 118.92 121.277 75.961 0 104.513-54.745 108.965-82.773H204.8v-66.009h181.261zm185.406 6.437V179.2h-56.001v55.733h-55.733v56.001h55.733v55.733h56.001v-55.733H627.2v-56.001h-55.733z"]
   };
   var faLine = {
     prefix: 'fab',
@@ -1842,7 +1856,6 @@
   library.add(faCircle);
   library.add(faEnvelope);
   library.add(faFacebookF);
-  library.add(faGooglePlusG);
   library.add(faLine);
   library.add(faWeibo);
   library.add(faTwitter);
@@ -1859,7 +1872,7 @@
       description: String,
       showButtons: {
         type: Array,
-        default: () => ['fb', 'gPlus']
+        default: () => ['line', 'fb', 'twitter']
       },
       buttons: {
         type: Object,
@@ -1870,16 +1883,10 @@
             href: url => `https://www.facebook.com/sharer.php?u=${url}`,
             transform: 'shrink-9'
           },
-          gPlus: {
-            fa: ['fab', 'google-plus-g'],
-            name: 'Google+',
-            href: url => `https://plus.google.com/share?url=${url}`,
-            transform: 'shrink-9 left-1'
-          },
           line: {
             fa: ['fab', 'line'],
             name: 'Line',
-            href: url => `https://lineit.line.me/share/ui?url=${url}`,
+            href: url => `https://social-plugins.line.me/lineit/share?url=${url}`,
             transform: '',
             hideWrapper: true
           },
@@ -1931,7 +1938,7 @@
       }
     },
     computed: {
-      href: () => location.href.replace(/#\w/, ''),
+      href: () => encodeURIComponent(location.href.replace(/#\w/, '')),
       mobile: () => navigator.userAgent.match(/(mobile|android|pad)/i),
 
       linkStyle() {
@@ -2152,11 +2159,11 @@
     /* style */
     const __vue_inject_styles__ = function (inject) {
       if (!inject) return
-      inject("data-v-027746ff_0", { source: "\na[data-v-027746ff] {\r\n  display: inline-block;\r\n  text-decoration: none;\r\n  -webkit-transition:\r\n    -webkit-transform .2s,\r\n    -ms-transform .2s,\r\n    transform .2s;\r\n  -moz-transition:\r\n    -webkit-transform .2s,\r\n    -ms-transform .2s,\r\n    transform .2s;\r\n  transition:\r\n    -webkit-transform .2s,\r\n    -ms-transform .2s,\r\n    transform .2s;\n}\na[data-v-027746ff]:hover {\r\n  -webkit-transform: translateY(-4px);\r\n  -ms-transform: translateY(-4px);\r\n  transform: translateY(-4px);\n}\n.icon-fb[data-v-027746ff] {\r\n  color: #3B5998;\n}\n.icon-gPlus[data-v-027746ff] {\r\n  color: #d73d32;\n}\n.fa-line[data-v-027746ff]  {\r\n  color: #00c300;\n}\n.icon-plurk[data-v-027746ff] {\r\n  color: #cf682f;\n}\n.icon-plurk ~ .fa-layers-text[data-v-027746ff] {\r\n  color: #ffffff;\r\n  font-family: arial;\r\n  font-style: normal;\r\n  font-weight: bold;\n}\n.icon-weibo[data-v-027746ff] {\r\n  color: #F5CA59;\n}\n.icon-twitter[data-v-027746ff] {\r\n  color: #2ba9e1;\n}\n.icon-tumblr[data-v-027746ff] {\r\n  color: #35465d;\n}\n.icon-pinterest[data-v-027746ff] {\r\n  color: #EA1514;\n}\n.icon-email[data-v-027746ff] {\r\n  color: #939598;\n}\r\n", map: {"version":3,"sources":["D:\\dev\\packages\\vue-c-share\\src\\CShare.vue"],"names":[],"mappings":";AAmKA;EACA,qBAAA;EACA,qBAAA;EACA;;;iBAGA;EACA;;;iBAGA;EACA;;;iBAGA;AACA;AACA;EACA,mCAAA;EACA,+BAAA;EACA,2BAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;EACA,kBAAA;EACA,kBAAA;EACA,iBAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA","file":"CShare.vue","sourcesContent":["<template>\r\n  <div>\r\n    <a\r\n      v-for=\"btnId in showButtons\"\r\n      :key=\"btnId\"\r\n      :href=\"buttons[btnId].href.call(null, href, description)\"\r\n      :title=\"`${shareToText} ${buttons[btnId].name}`\"\r\n      target=\"_blank\"\r\n      :style=\"linkStyle\"\r\n      @click=\"clickLink($event, buttons[btnId].href.call(null, href, description))\"\r\n    >\r\n      <fa-layers class=\"fa-2x\">\r\n        <fa icon=\"circle\" :class=\"`icon-${btnId}`\" v-if=\"!buttons[btnId].hideWrapper\"></fa>\r\n        <fa-layers-text\r\n          v-if=\"buttons[btnId].text\"\r\n          :transform=\"buttons[btnId].transform\"\r\n          :value=\"buttons[btnId].text\"\r\n        ></fa-layers-text>\r\n        <fa\r\n          v-else\r\n          :icon=\"buttons[btnId].fa\"\r\n          :transform=\"buttons[btnId].transform\"\r\n          :inverse=\"!buttons[btnId].hideWrapper\"\r\n        ></fa>\r\n      </fa-layers>\r\n    </a>\r\n  </div>\r\n</template>\r\n\r\n<script>\r\nimport {\r\n  FontAwesomeIcon as fa,\r\n  FontAwesomeLayers as faLayers,\r\n  FontAwesomeLayersText as faLayersText\r\n} from '@fortawesome/vue-fontawesome'\r\nimport { library } from '@fortawesome/fontawesome-svg-core'\r\nimport { faCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons'\r\nimport {\r\n  faFacebookF,\r\n  faGooglePlusG,\r\n  faLine,\r\n  faWeibo,\r\n  faTwitter,\r\n  faTumblr,\r\n  faPinterestP\r\n} from '@fortawesome/free-brands-svg-icons'\r\n\r\nlibrary.add(faCircle)\r\nlibrary.add(faEnvelope)\r\nlibrary.add(faFacebookF)\r\nlibrary.add(faGooglePlusG)\r\nlibrary.add(faLine)\r\nlibrary.add(faWeibo)\r\nlibrary.add(faTwitter)\r\nlibrary.add(faTumblr)\r\nlibrary.add(faPinterestP)\r\n\r\nexport default {\r\n  name: 'CShare',\r\n  components: {\r\n    fa,\r\n    faLayers,\r\n    faLayersText\r\n  },\r\n  props: {\r\n    description: String,\r\n    showButtons: {\r\n      type: Array,\r\n      default: () => [\r\n        'fb',\r\n        'gPlus'\r\n      ]\r\n    },\r\n    buttons: {\r\n      type: Object,\r\n      default: () => ({\r\n        fb: {\r\n          fa: ['fab', 'facebook-f'],\r\n          name: 'Fb',\r\n          href: url => `https://www.facebook.com/sharer.php?u=${url}`,\r\n          transform: 'shrink-9'\r\n        },\r\n        gPlus: {\r\n          fa: ['fab', 'google-plus-g'],\r\n          name: 'Google+',\r\n          href: url => `https://plus.google.com/share?url=${url}`,\r\n          transform: 'shrink-9 left-1'\r\n        },\r\n        line: {\r\n          fa: ['fab', 'line'],\r\n          name: 'Line',\r\n          href: url => `https://lineit.line.me/share/ui?url=${url}`,\r\n          transform: '',\r\n          hideWrapper: true\r\n        },\r\n        plurk: {\r\n          name: 'Plurk',\r\n          href: (url, description) => `http://www.plurk.com/?qualifier=shares&status=${description} ${url}`,\r\n          transform: 'shrink-9',\r\n          text: 'P'\r\n        },\r\n        weibo: {\r\n          fa: ['fab', 'weibo'],\r\n          name: '微博',\r\n          href: (url, description) => `http://service.weibo.com/share/share.php?title=${description}&url=${url}`,\r\n          transform: 'shrink-9'\r\n        },\r\n        twitter: {\r\n          fa: ['fab', 'twitter'],\r\n          name: 'Twitter',\r\n          href: (url, description) => `https://twitter.com/intent/tweet?original_referer=${url}&url=${url}&text=${description}`,\r\n          transform: 'shrink-9'\r\n        },\r\n        tumblr: {\r\n          fa: ['fab', 'tumblr'],\r\n          name: 'Tumblr',\r\n          href: (url, description) => `http://www.tumblr.com/share/link?name=${description} ${url}&url=${url}`,\r\n          transform: 'shrink-9'\r\n        },\r\n        pinterest: {\r\n          fa: ['fab', 'pinterest-p'],\r\n          name: 'Pinterest',\r\n          href: (url, description) => `http://pinterest.com/pin/create/button/?url=${url}&description=${description} ${url}`,\r\n          transform: 'shrink-9'\r\n        },\r\n        email: {\r\n          fa: ['fas', 'envelope'],\r\n          name: 'E-mail',\r\n          href: (url, description) => `mailto:?subject=${description}&body=${description} ${url}`,\r\n          transform: 'shrink-9'\r\n        }\r\n      })\r\n    },\r\n    spacing: {\r\n      type: Number,\r\n      default: 6\r\n    },\r\n    shareToText: {\r\n      type: String,\r\n      default: 'Share to'\r\n    }\r\n  },\r\n  computed: {\r\n    href: () => location.href.replace(/#\\w/, ''),\r\n    mobile: () => navigator.userAgent.match(/(mobile|android|pad)/i),\r\n    linkStyle() {\r\n      return {\r\n        margin: `auto ${Number(this.spacing) / 2}px`\r\n      }\r\n    }\r\n  },\r\n  methods: {\r\n    clickLink(e, href) {\r\n      if (!this.mobile) {\r\n        e.preventDefault()\r\n        window.open(href, '_blank', 'height=600,width=500')\r\n      }\r\n    }\r\n  }\r\n}\r\n</script>\r\n\r\n<style scoped>\r\na {\r\n  display: inline-block;\r\n  text-decoration: none;\r\n  -webkit-transition:\r\n    -webkit-transform .2s,\r\n    -ms-transform .2s,\r\n    transform .2s;\r\n  -moz-transition:\r\n    -webkit-transform .2s,\r\n    -ms-transform .2s,\r\n    transform .2s;\r\n  transition:\r\n    -webkit-transform .2s,\r\n    -ms-transform .2s,\r\n    transform .2s;\r\n}\r\na:hover {\r\n  -webkit-transform: translateY(-4px);\r\n  -ms-transform: translateY(-4px);\r\n  transform: translateY(-4px);\r\n}\r\n.icon-fb {\r\n  color: #3B5998;\r\n}\r\n.icon-gPlus {\r\n  color: #d73d32;\r\n}\r\n.fa-line  {\r\n  color: #00c300;\r\n}\r\n.icon-plurk {\r\n  color: #cf682f;\r\n}\r\n.icon-plurk ~ .fa-layers-text {\r\n  color: #ffffff;\r\n  font-family: arial;\r\n  font-style: normal;\r\n  font-weight: bold;\r\n}\r\n.icon-weibo {\r\n  color: #F5CA59;\r\n}\r\n.icon-twitter {\r\n  color: #2ba9e1;\r\n}\r\n.icon-tumblr {\r\n  color: #35465d;\r\n}\r\n.icon-pinterest {\r\n  color: #EA1514;\r\n}\r\n.icon-email {\r\n  color: #939598;\r\n}\r\n</style>\r\n"]}, media: undefined });
+      inject("data-v-875ee68a_0", { source: "\na[data-v-875ee68a] {\n  display: inline-block;\n  text-decoration: none;\n  -webkit-transition:\n    -webkit-transform .2s,\n    -ms-transform .2s,\n    transform .2s;\n  -moz-transition:\n    -webkit-transform .2s,\n    -ms-transform .2s,\n    transform .2s;\n  transition:\n    -webkit-transform .2s,\n    -ms-transform .2s,\n    transform .2s;\n}\na[data-v-875ee68a]:hover {\n  -webkit-transform: translateY(-4px);\n  -ms-transform: translateY(-4px);\n  transform: translateY(-4px);\n}\n.icon-fb[data-v-875ee68a] {\n  color: #3B5998;\n}\n.fa-line[data-v-875ee68a]  {\n  color: #00c300;\n}\n.icon-plurk[data-v-875ee68a] {\n  color: #cf682f;\n}\n.icon-plurk ~ .fa-layers-text[data-v-875ee68a] {\n  color: #ffffff;\n  font-family: arial;\n  font-style: normal;\n  font-weight: bold;\n}\n.icon-weibo[data-v-875ee68a] {\n  color: #F5CA59;\n}\n.icon-twitter[data-v-875ee68a] {\n  color: #2ba9e1;\n}\n.icon-tumblr[data-v-875ee68a] {\n  color: #35465d;\n}\n.icon-pinterest[data-v-875ee68a] {\n  color: #EA1514;\n}\n.icon-email[data-v-875ee68a] {\n  color: #939598;\n}\n", map: {"version":3,"sources":["D:\\dev\\packages\\vue-c-share\\src\\CShare.vue"],"names":[],"mappings":";AAwJA;EACA,qBAAA;EACA,qBAAA;EACA;;;iBAGA;EACA;;;iBAGA;EACA;;;iBAGA;AACA;AACA;EACA,mCAAA;EACA,+BAAA;EACA,2BAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;EACA,kBAAA;EACA,kBAAA;EACA,iBAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA;AACA;EACA,cAAA;AACA","file":"CShare.vue","sourcesContent":["<template>\n  <div>\n    <a\n      v-for=\"btnId in showButtons\"\n      :key=\"btnId\"\n      :href=\"buttons[btnId].href.call(null, href, description)\"\n      :title=\"`${shareToText} ${buttons[btnId].name}`\"\n      target=\"_blank\"\n      :style=\"linkStyle\"\n      @click=\"clickLink($event, buttons[btnId].href.call(null, href, description))\"\n    >\n      <fa-layers class=\"fa-2x\">\n        <fa icon=\"circle\" :class=\"`icon-${btnId}`\" v-if=\"!buttons[btnId].hideWrapper\"></fa>\n        <fa-layers-text\n          v-if=\"buttons[btnId].text\"\n          :transform=\"buttons[btnId].transform\"\n          :value=\"buttons[btnId].text\"\n        ></fa-layers-text>\n        <fa\n          v-else\n          :icon=\"buttons[btnId].fa\"\n          :transform=\"buttons[btnId].transform\"\n          :inverse=\"!buttons[btnId].hideWrapper\"\n        ></fa>\n      </fa-layers>\n    </a>\n  </div>\n</template>\n\n<script>\nimport {\n  FontAwesomeIcon as fa,\n  FontAwesomeLayers as faLayers,\n  FontAwesomeLayersText as faLayersText\n} from '@fortawesome/vue-fontawesome'\nimport { library } from '@fortawesome/fontawesome-svg-core'\nimport { faCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons'\nimport {\n  faFacebookF,\n  faLine,\n  faWeibo,\n  faTwitter,\n  faTumblr,\n  faPinterestP\n} from '@fortawesome/free-brands-svg-icons'\n\nlibrary.add(faCircle)\nlibrary.add(faEnvelope)\nlibrary.add(faFacebookF)\nlibrary.add(faLine)\nlibrary.add(faWeibo)\nlibrary.add(faTwitter)\nlibrary.add(faTumblr)\nlibrary.add(faPinterestP)\n\nexport default {\n  name: 'CShare',\n  components: {\n    fa,\n    faLayers,\n    faLayersText\n  },\n  props: {\n    description: String,\n    showButtons: {\n      type: Array,\n      default: () => ['line', 'fb', 'twitter']\n    },\n    buttons: {\n      type: Object,\n      default: () => ({\n        fb: {\n          fa: ['fab', 'facebook-f'],\n          name: 'Fb',\n          href: url => `https://www.facebook.com/sharer.php?u=${url}`,\n          transform: 'shrink-9'\n        },\n        line: {\n          fa: ['fab', 'line'],\n          name: 'Line',\n          href: url => `https://social-plugins.line.me/lineit/share?url=${url}`,\n          transform: '',\n          hideWrapper: true\n        },\n        plurk: {\n          name: 'Plurk',\n          href: (url, description) => `http://www.plurk.com/?qualifier=shares&status=${description} ${url}`,\n          transform: 'shrink-9',\n          text: 'P'\n        },\n        weibo: {\n          fa: ['fab', 'weibo'],\n          name: '微博',\n          href: (url, description) => `http://service.weibo.com/share/share.php?title=${description}&url=${url}`,\n          transform: 'shrink-9'\n        },\n        twitter: {\n          fa: ['fab', 'twitter'],\n          name: 'Twitter',\n          href: (url, description) => `https://twitter.com/intent/tweet?original_referer=${url}&url=${url}&text=${description}`,\n          transform: 'shrink-9'\n        },\n        tumblr: {\n          fa: ['fab', 'tumblr'],\n          name: 'Tumblr',\n          href: (url, description) => `http://www.tumblr.com/share/link?name=${description} ${url}&url=${url}`,\n          transform: 'shrink-9'\n        },\n        pinterest: {\n          fa: ['fab', 'pinterest-p'],\n          name: 'Pinterest',\n          href: (url, description) => `http://pinterest.com/pin/create/button/?url=${url}&description=${description} ${url}`,\n          transform: 'shrink-9'\n        },\n        email: {\n          fa: ['fas', 'envelope'],\n          name: 'E-mail',\n          href: (url, description) => `mailto:?subject=${description}&body=${description} ${url}`,\n          transform: 'shrink-9'\n        }\n      })\n    },\n    spacing: {\n      type: Number,\n      default: 6\n    },\n    shareToText: {\n      type: String,\n      default: 'Share to'\n    }\n  },\n  computed: {\n    href: () => encodeURIComponent(location.href.replace(/#\\w/, '')),\n    mobile: () => navigator.userAgent.match(/(mobile|android|pad)/i),\n    linkStyle() {\n      return {\n        margin: `auto ${Number(this.spacing) / 2}px`\n      }\n    }\n  },\n  methods: {\n    clickLink(e, href) {\n      if (!this.mobile) {\n        e.preventDefault()\n        window.open(href, '_blank', 'height=600,width=500')\n      }\n    }\n  }\n}\n</script>\n\n<style scoped>\na {\n  display: inline-block;\n  text-decoration: none;\n  -webkit-transition:\n    -webkit-transform .2s,\n    -ms-transform .2s,\n    transform .2s;\n  -moz-transition:\n    -webkit-transform .2s,\n    -ms-transform .2s,\n    transform .2s;\n  transition:\n    -webkit-transform .2s,\n    -ms-transform .2s,\n    transform .2s;\n}\na:hover {\n  -webkit-transform: translateY(-4px);\n  -ms-transform: translateY(-4px);\n  transform: translateY(-4px);\n}\n.icon-fb {\n  color: #3B5998;\n}\n.fa-line  {\n  color: #00c300;\n}\n.icon-plurk {\n  color: #cf682f;\n}\n.icon-plurk ~ .fa-layers-text {\n  color: #ffffff;\n  font-family: arial;\n  font-style: normal;\n  font-weight: bold;\n}\n.icon-weibo {\n  color: #F5CA59;\n}\n.icon-twitter {\n  color: #2ba9e1;\n}\n.icon-tumblr {\n  color: #35465d;\n}\n.icon-pinterest {\n  color: #EA1514;\n}\n.icon-email {\n  color: #939598;\n}\n</style>\n"]}, media: undefined });
 
     };
     /* scoped */
-    const __vue_scope_id__ = "data-v-027746ff";
+    const __vue_scope_id__ = "data-v-875ee68a";
     /* module identifier */
     const __vue_module_identifier__ = undefined;
     /* functional template */
