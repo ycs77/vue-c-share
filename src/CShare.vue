@@ -40,8 +40,7 @@ import {
   faLine,
   faWeibo,
   faTwitter,
-  faTumblr,
-  faPinterestP
+  faTumblr
 } from '@fortawesome/free-brands-svg-icons'
 
 library.add(faCircle)
@@ -51,7 +50,6 @@ library.add(faLine)
 library.add(faWeibo)
 library.add(faTwitter)
 library.add(faTumblr)
-library.add(faPinterestP)
 
 export default {
   name: 'CShare',
@@ -104,12 +102,6 @@ export default {
           fa: ['fab', 'tumblr'],
           name: 'Tumblr',
           href: (url, description) => `http://www.tumblr.com/share/link?name=${description} ${url}&url=${url}`,
-          transform: 'shrink-9'
-        },
-        pinterest: {
-          fa: ['fab', 'pinterest-p'],
-          name: 'Pinterest',
-          href: (url, description) => `http://pinterest.com/pin/create/button/?url=${url}&description=${description} ${url}`,
           transform: 'shrink-9'
         },
         email: {
@@ -194,9 +186,6 @@ a:hover {
 }
 .icon-tumblr {
   color: #35465d;
-}
-.icon-pinterest {
-  color: #EA1514;
 }
 .icon-email {
   color: #939598;
