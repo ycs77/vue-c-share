@@ -141,7 +141,7 @@ export default {
     }
   },
   computed: {
-    href: () => location.href.replace(/#\w/, ''),
+    href: () => encodeURIComponent(location.href.replace(/#\w/, '')),
     mobile: () => navigator.userAgent.match(/(mobile|android|pad)/i),
     linkStyle() {
       return {
