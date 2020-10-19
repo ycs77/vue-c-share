@@ -37,7 +37,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCircle, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import {
   faFacebookF,
-  faGooglePlusG,
   faLine,
   faWeibo,
   faTwitter,
@@ -48,7 +47,6 @@ import {
 library.add(faCircle)
 library.add(faEnvelope)
 library.add(faFacebookF)
-library.add(faGooglePlusG)
 library.add(faLine)
 library.add(faWeibo)
 library.add(faTwitter)
@@ -66,10 +64,7 @@ export default {
     description: String,
     showButtons: {
       type: Array,
-      default: () => [
-        'fb',
-        'gPlus'
-      ]
+      default: () => ['line', 'fb', 'twitter']
     },
     buttons: {
       type: Object,
@@ -79,12 +74,6 @@ export default {
           name: 'Fb',
           href: url => `https://www.facebook.com/sharer.php?u=${url}`,
           transform: 'shrink-9'
-        },
-        gPlus: {
-          fa: ['fab', 'google-plus-g'],
-          name: 'Google+',
-          href: url => `https://plus.google.com/share?url=${url}`,
-          transform: 'shrink-9 left-1'
         },
         line: {
           fa: ['fab', 'line'],
@@ -184,9 +173,6 @@ a:hover {
 }
 .icon-fb {
   color: #3B5998;
-}
-.icon-gPlus {
-  color: #d73d32;
 }
 .fa-line  {
   color: #00c300;
