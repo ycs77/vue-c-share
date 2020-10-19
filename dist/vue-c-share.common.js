@@ -1,11 +1,11 @@
 /*!
- * vue-c-share.js v0.2.0
+ * vue-c-share.js v1.0.0
  * https://github.com/ycs77/vue-c-share
  *
  * Copyright 2020 Lucas Yang
  * Released under the MIT license
  *
- * Date: 2020-10-19T07:51:57.893Z
+ * Date: 2020-10-19T07:58:28.236Z
  */
 
 'use strict';
