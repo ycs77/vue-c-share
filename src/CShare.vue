@@ -134,7 +134,7 @@ export default {
     clickLink(e, href) {
       if (!this.mobile) {
         e.preventDefault()
-        window.open(href, '_blank', 'height=600,width=500')
+        window.open(href, '_blank', 'noopener,width=500,height=600')
       }
     }
   }
