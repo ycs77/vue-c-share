@@ -70,7 +70,7 @@ export default {
         fb: {
           fa: ['fab', 'facebook-f'],
           name: 'Fb',
-          href: url => `https://www.facebook.com/sharer.php?u=${url}`,
+          href: url => `https://www.facebook.com/sharer/sharer.php?u=${url}`,
           transform: 'shrink-9'
         },
         line: {
