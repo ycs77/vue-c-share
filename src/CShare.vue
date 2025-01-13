@@ -76,7 +76,7 @@ export default {
         line: {
           fa: ['fab', 'line'],
           name: 'Line',
-          href: url => `https://social-plugins.line.me/lineit/share?url=${url}`,
+          href: (url, description) => `https://social-plugins.line.me/lineit/share?url=${url}&text=${description}`,
           transform: '',
           hideWrapper: true
         },
